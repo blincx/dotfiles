@@ -84,19 +84,21 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 
-;; tabs /spaces / misc
+;; tabs /spaces
 (setq tab-width 4)          ; and 4 char wide for TAB
 (setq indent-tabs-mode nil) ; And force use of spaces
 
+;; misc
 (turn-on-font-lock)       ; same as syntax on in Vim
-
 (setq inhibit-startup-screen t) ; no startup screen
-
 ;(setq mouse-drag-copy-region t) ; copy to clipboard on mouse select
-
+(blink-cursor-mode 0)
 
 ;;  retabify document via: C-x h ... C-alt-\
 ;; where alt is M, the meta key
+
+
+;;
 
 ;; Automatically save and restore sessions
 (setq desktop-dirname             "~/.emacs.d/desktop/"
