@@ -50,6 +50,7 @@
 (key-chord-define-global "ss" 'save-buffer)
 (key-chord-define-global "kl" 'ido-kill-buffer)
 (key-chord-define-global "qq" 'keyboard-escape-quit)
+(key-chord-define-global "ww" 'delete-window)
 
 (key-chord-mode 1)
 ;(scroll-bar-mode -1)  ;hide scroll-bar
