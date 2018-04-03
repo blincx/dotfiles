@@ -48,7 +48,7 @@
 (key-chord-define-global "oo" 'other-window)
 (key-chord-define-global "ff" 'find-file)
 (key-chord-define-global "ss" 'save-buffer)
-(key-chord-define-global "ki" 'kill-buffer)
+(key-chord-define-global "kl" 'ido-kill-buffer)
 (key-chord-define-global "qq" 'keyboard-escape-quit)
 
 (key-chord-mode 1)
