@@ -63,8 +63,9 @@
 
 
 (key-chord-mode 1)
-;(scroll-bar-mode -1)  ;hide scroll-bar
-;(tool-bar-mode -1)    ;hide tool-ba
+(scroll-bar-mode -1)  ;hide scroll-bar
+(tool-bar-mode -1)    ;hide tool-ba
+(menu-bar-mode -1)
 
 ;; change all prompts to y or n
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -107,6 +108,7 @@
 
 ;;  retabify document via: C-x h ... C-alt-\
 ;; where alt is M, the meta key
+
 
 
 ;;
