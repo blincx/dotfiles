@@ -22,8 +22,8 @@
 (evil-mode 1)
 
 ;; default font size
-(add-to-list 'default-frame-alist '(font . "Droid Sans Mono-16" ))
-(set-face-attribute 'default t :font "Droid Sans Mono-16" )
+(add-to-list 'default-frame-alist '(font . "Droid Sans Mono-18" ))
+(set-face-attribute 'default t :font "Droid Sans Mono-18" )
 
 ;; key-chord
 (require 'key-chord)
@@ -35,20 +35,32 @@
 ;; Should normally be a little longer than `key-chord-two-keys-delay'.
 (setq key-chord-one-key-delay 0.2) ; default 0.2
 
+(defun bjm/kill-this-buffer ()
+  "Kill the current buffer."
+  (interactive)
+  (kill-buffer (current-buffer)))
+
+(global-set-key (kbd "C-x k") 'bjm/kill-this-buffer)
+
+
+
 ;;Exit insert mode by pressing j and then j quickly
 (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
 (key-chord-define-global "ii" 'execute-extended-command) 
 (key-chord-define-global "bb" 'ido-switch-buffer)
-(key-chord-define-global "ma" 'manual-entry)
 (key-chord-define-global "uu" 'advertised-undo)
 (key-chord-define-global "bm" 'buffer-menu)
 (key-chord-define-global "oo" 'other-window)
-(key-chord-define-global "ff" 'find-file)
-(key-chord-define-global "ss" 'save-buffer)
-(key-chord-define-global "kl" 'ido-kill-buffer)
+(key-chord-define-global "ef" 'find-file)
+(key-chord-define-global "qs" 'save-buffer)
+;(key-chord-define-global "kl" 'ido-kill-buffer)
+(key-chord-define-global "kl" 'bjm/kill-this-buffer)
 (key-chord-define-global "qq" 'keyboard-escape-quit)
 (key-chord-define-global "ww" 'delete-window)
 (key-chord-define-global "[[" 'shell-pop)
+
+
+
 
 (key-chord-mode 1)
 ;(scroll-bar-mode -1)  ;hide scroll-bar
@@ -116,7 +128,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (light-blue))))
+ '(custom-enabled-themes nil)
+ '(package-selected-packages
+   (quote
+    (use-package shell-pop rainbow-delimiters key-chord flycheck evil diminish))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -135,5 +150,7 @@
   (setq shell-pop-term-shell "/bin/zsh")
   ;; need to do this manually or not picked up by `shell-pop'
   (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type))
+
+
 
 
