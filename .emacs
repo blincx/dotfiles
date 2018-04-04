@@ -1,4 +1,4 @@
-;;; Erix .emacs April 2018 baby joyous
+;;; blincx .emacs April 2018 baby joyous
 
 (require 'package)
 
@@ -48,6 +48,7 @@
 (key-chord-define-global "kl" 'ido-kill-buffer)
 (key-chord-define-global "qq" 'keyboard-escape-quit)
 (key-chord-define-global "ww" 'delete-window)
+(key-chord-define-global "[[" 'shell-pop)
 
 (key-chord-mode 1)
 ;(scroll-bar-mode -1)  ;hide scroll-bar
