@@ -22,8 +22,8 @@
 (evil-mode 1)
 
 ;; default font size
-(add-to-list 'default-frame-alist '(font . "Droid Sans Mono-18" ))
-(set-face-attribute 'default t :font "Droid Sans Mono-18" )
+;(add-to-list 'default-frame-alist '(font . "Droid Sans Mono-18" ))
+;(set-face-attribute 'default t :font "Droid Sans Mono-18" )
 
 ;; key-chord
 (require 'key-chord)
@@ -50,7 +50,7 @@
 (key-chord-define-global "bb" 'ido-switch-buffer)
 (key-chord-define-global "uu" 'advertised-undo)
 (key-chord-define-global "bm" 'buffer-menu)
-(key-chord-define-global "oo" 'other-window)
+(key-chord-define-global "8o" 'other-window)
 (key-chord-define-global "ef" 'find-file)
 (key-chord-define-global "qs" 'save-buffer)
 ;(key-chord-define-global "kl" 'ido-kill-buffer)
@@ -105,13 +105,11 @@
 (setq inhibit-startup-screen t) ; no startup screen
 ;(setq mouse-drag-copy-region t) ; copy to clipboard on mouse select
 (blink-cursor-mode 0)
+(global-linum-mode t)
+
 
 ;;  retabify document via: C-x h ... C-alt-\
 ;; where alt is M, the meta key
-
-
-
-;;
 
 ;; Automatically save and restore sessions
 (setq desktop-dirname             "~/.emacs.d/desktop/"
@@ -131,15 +129,17 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes nil)
- '(package-selected-packages
-   (quote
-    (use-package shell-pop rainbow-delimiters key-chord flycheck evil diminish))))
+ '(package-selected-packages (quote (use-package shell-pop rainbow-delimiters key-chord flycheck evil diminish))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(linum ((t (:background "black" :foreground "color-188" :weight light))))
+ '(nxml-attribute-local-name ((t (:foreground "color-185"))))
+ '(nxml-attribute-value ((t (:foreground "color-17"))))
+ '(nxml-element-local-name ((t (:foreground "brightcyan"))))
+ '(nxml-processing-instruction-target ((t (:inherit font-lock-keyword-face :foreground "brightwhite" :weight bold)))))
 
 
 ;;;;;; continuing fun customizations
