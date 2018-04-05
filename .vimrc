@@ -3,21 +3,14 @@
 
 set nocompatible
 
-"Pathogen has to stay up here
-execute pathogen#infect()
-" Pathogen stays here
-
 filetype plugin indent on   " Filetype detection
 syntax on
 
-
 " stop arrow keys from inserting A, B, C, D
-set term=builtin_ansi
+"#set term=builtin_ansi
 
 set nocursorline
 runtime autoload/netrw.vim " will 'capture' cursorline and cursorcolumn values
-
-set rtp+=/usr/local/go/misc/vim
 
 set nofoldenable    " disable folding
 set timeoutlen=240 " Quick timeout for speedy key sequence resolution
@@ -30,20 +23,12 @@ hi Search ctermfg=Cyan ctermbg=NONE cterm=bold
 hi LineNr ctermfg=White
 
 
-let g:CommandTCursorColor='blue'
-let g:CommandTHighlightColor ='red'
+" this turns off physical line wrapping (ie: automatic insertion of newlines)
+set textwidth=0 wrapmargin=0
 
 set modifiable
 "No highlights after search
 nnoremap <esc> :noh<return><esc>
-
-" ack
-let g:ackprg = 'ag --nogroup --nocolor --column'
-
-" omni completion
-set omnifunc=syntaxcomplete#Complete
-
-
 
 " MAIN KEY CUSTOMIZATIONS
 " jj escapes from insert mode
@@ -65,10 +50,6 @@ map ; :
 
 " Return to firstchar of line with 0
 map 0 ^
-
-" Go inside a paragraph and reformat with Q
-vmap Q gq
-nmap Q gqap
 
 " map space bar to open/close folds
 nnoremap <space> za
@@ -109,7 +90,7 @@ set foldcolumn=10
 imap <C-u> : <Esc><C-u>
 
 " General settings
-set background=dark
+set background=light
 set undolevels=1000
 set history=700
 set autoread
@@ -241,16 +222,6 @@ augroup CursorLine
     au WinLeave * setlocal nocursorline
 augroup END
 
-" Turn off the arrow keys!
-inoremap  <Up>     <NOP>
-inoremap  <Down>   <NOP>
-inoremap  <Left>   <NOP>
-inoremap  <Right>  <NOP>
-noremap   <Up>     <NOP>
-noremap   <Down>   <NOP>
-noremap   <Left>   <NOP>
-noremap   <Right>  <NOP>
-
 " provide hjkl movements in Insert mode via the <Alt> modifier key
 inoremap <A-h> <C-o>h
 inoremap <A-j> <C-o>j
@@ -258,7 +229,8 @@ inoremap <A-k> <C-o>k
 inoremap <A-l> <C-o>l
 
 " workaround to kill garbage characters
-set t_RV=
+set t_RV=i
+
 
 set encoding=utf-8 " encoding used for displaying file
 set fileencoding=utf-8 " encoding used when saving file
@@ -293,51 +265,6 @@ augroup END
 " Made D behave
 nnoremap D d$
 
-" Go-vim stuff
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_interfaces = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
-" Open Godoc in browser
-au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-" Open godef in a new tab
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-
-au FileType go nmap <Leader>i <Plug>(go-info)
-
-nnoremap gooff :GoDisableGoimports<CR>
-nnoremap goon :GoEnableGoimports<CR>
-
-
-" Remove the nasty red whitespace errors
-let g:go_highlight_trailing_whitespace_error = 0
-
-"set nohlsearch " search highlighting is bothersome
-
-" haskell
-" use ghc functionality for haskell files
-au Bufenter *.hs compiler ghc
-" configure browser for haskell_doc.vim
-let g:haddock_browser = "/usr/bin/google-chrome"
-
-"perltidy
-" mark a block of perl code and press '=' to format
-autocmd FileType perl setlocal equalprg=perltidy\ -st
-
-" DiffSaved to see a diff between currently edited file
-" and its unmodified version in the filesystem
-function! s:DiffWithSaved()
-  let filetype=&ft
-  diffthis
-  vnew | r # | normal! 1Gdd
-  diffthis
-  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-endfunction
-com! DiffSaved call s:DiffWithSaved()
-
 
 " Don't move one space back when exiting INSERT mode
 let CursorColumnI = 0 "the cursor column position in INSERT
@@ -345,19 +272,11 @@ autocmd InsertEnter * let CursorColumnI = col('.')
 autocmd CursorMovedI * let CursorColumnI = col('.')
 autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
 
-" rust
-let g:rustfmt_autosave = 1
 
-" syntastic
+set wrap
+set linebreak
+set nolist  " list disables linebreak
+set textwidth=0
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-" Go with syntastic
-let g:syntastic_go_checkers = ['golint'] ", 'govet']
+autocmd VimEnter * redraw!
 
