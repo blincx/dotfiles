@@ -17,12 +17,6 @@ set timeoutlen=240 " Quick timeout for speedy key sequence resolution
 set cinoptions=:0g0 " ...but don't indent case labels and access modifiers
 
 
-" Making completion menu's look OK
-hi Pmenu ctermbg=4 ctermfg=9
-hi Search ctermfg=Cyan ctermbg=NONE cterm=bold
-hi LineNr ctermfg=White
-
-
 " this turns off physical line wrapping (ie: automatic insertion of newlines)
 set textwidth=0 wrapmargin=0
 
