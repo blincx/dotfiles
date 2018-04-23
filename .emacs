@@ -51,7 +51,6 @@
 (key-chord-define-global "uu" 'advertised-undo)
 (key-chord-define-global "bm" 'buffer-menu)
 (key-chord-define-global "8o" 'other-window)
-(key-chord-define-global "ef" 'find-file)
 (key-chord-define-global "qs" 'save-buffer)
 ;(key-chord-define-global "kl" 'ido-kill-buffer)
 (key-chord-define-global "kl" 'bjm/kill-this-buffer)
@@ -135,11 +134,21 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(font-lock-comment-face ((t (:foreground "blue"))))
+ '(font-lock-constant-face ((t (:foreground "blue"))))
+ '(font-lock-function-name-face ((t (:foreground "black" :weight bold))))
+ '(font-lock-keyword-face ((t (:foreground "color-127"))))
+ '(font-lock-string-face ((t (:foreground "brightyellow" :weight bold))))
+ '(font-lock-variable-name-face ((t (:foreground "black"))))
  '(linum ((t (:background "black" :foreground "color-188" :weight light))))
  '(nxml-attribute-local-name ((t (:foreground "color-185"))))
  '(nxml-attribute-value ((t (:foreground "color-17"))))
  '(nxml-element-local-name ((t (:foreground "brightcyan"))))
- '(nxml-processing-instruction-target ((t (:inherit font-lock-keyword-face :foreground "brightwhite" :weight bold)))))
+ '(nxml-processing-instruction-target ((t (:inherit font-lock-keyword-face :foreground "brightwhite" :weight bold))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "red"))))
+ '(rainbow-delimiters-depth-5-face ((t (:inherit rainbow-delimiters-base-face :foreground "brightgreen"))))
+ '(rainbow-delimiters-depth-7-face ((t (:foreground "black"))))
+ '(rainbow-delimiters-depth-9-face ((t (:inherit rainbow-delimiters-base-face :foreground "blue")))))
 
 
 ;;;;;; continuing fun customizations
@@ -152,7 +161,6 @@
   (setq shell-pop-term-shell "/bin/zsh")
   ;; need to do this manually or not picked up by `shell-pop'
   (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type))
-
 
 
 
