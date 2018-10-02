@@ -129,47 +129,43 @@ if &term =~ "xterm" || &term =~ "screen"
     let g:CommandTCancelMap = ['<ESC>', '<C-c>']
 endif
 
-
-" Tabline
-" These functions create the tab label on the tabline
-" It actually shows buffer numbers and not tabs
 set tabline=%!MyTabLine()
 
-
 function MyTabLine()
-      let s = ''
-      for i in range(tabpagenr('$'))
-        " select the highlighting
-        if i + 1 == tabpagenr()
-          let s .= '%#TabLineSel#'
-        else
-          let s .= '%#TabLine#'
-        endif
+  let s = ''
+  for i in range(tabpagenr('$'))
+    " select the highlighting
+    if i + 1 == tabpagenr()
+      let s .= '%#TabLineSel#'
+    else
+      let s .= '%#TabLine#'
+    endif
 
-        " set the tab page number (for mouse clicks)
-        let s .= '%' . (i + 1) . 'T'
+    " set the tab page number (for mouse clicks)
+    let s .= '%' . (i + 1) . 'T' 
 
-        " the label is made by MyTabLabel()
-        let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
-      endfor
+    " the label is made by MyTabLabel()
+    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+  endfor
 
-      " after the last tab fill with TabLineFill and reset tab page nr
-      let s .= '%#TabLineFill#%T'
+  " after the last tab fill with TabLineFill and reset tab page nr
+  let s .= '%#TabLineFill#%T'
 
-      " right-align the label to close the current tab page
-      if tabpagenr('$') > 1
-        let s .= '%=%#TabLine#%999Xclose'
-      endif
+  " right-align the label to close the current tab page
+  if tabpagenr('$') > 1 
+    let s .= '%=%#TabLine#%999Xclose'
+  endif
 
-      return s
+  return s
 endfunction
-
 
 function MyTabLabel(n)
-      let buflist = tabpagebuflist(a:n)
-      let winnr = tabpagewinnr(a:n)
-      return buflist[winnr - 1] . ') ' . bufname(buflist[winnr - 1])
+  let buflist = tabpagebuflist(a:n)
+  let winnr = tabpagewinnr(a:n)
+  let label =  bufname(buflist[winnr - 1]) 
+  return fnamemodify(label, ":t") 
 endfunction
+
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
