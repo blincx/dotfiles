@@ -3,14 +3,19 @@
 
 set nocompatible
 
+"Pathogen has to stay up here
+execute pathogen#infect()
+" Pathogen stays here
+
 filetype plugin indent on   " Filetype detection
 syntax on
 
 
-set cursorline
 " stop arrow keys from inserting A, B, C, D
-" # setterm=builtin_ansi
+set term=builtin_ansi
 
+set nocursorline
+runtime autoload/netrw.vim " will 'capture' cursorline and cursorcolumn values
 
 set rtp+=/usr/local/go/misc/vim
 
@@ -20,6 +25,7 @@ set cinoptions=:0g0 " ...but don't indent case labels and access modifiers
 
 
 " Making completion menu's look OK
+hi Pmenu ctermbg=4 ctermfg=9
 hi Search ctermfg=Cyan ctermbg=NONE cterm=bold
 hi LineNr ctermfg=White
 
@@ -103,6 +109,7 @@ set foldcolumn=10
 imap <C-u> : <Esc><C-u>
 
 " General settings
+set background=dark
 set undolevels=1000
 set history=700
 set autoread
@@ -221,6 +228,8 @@ set virtualedit=block
 nnoremap Y y$
 
 " Cursorline problem
+let g:netrw_cursorline=0
+
 "Cursorline with tabs bugfix
 " This prevents the cursorline appearing each time
 " that I use tabs!!
@@ -330,6 +339,11 @@ endfunction
 com! DiffSaved call s:DiffWithSaved()
 
 
+" Don't move one space back when exiting INSERT mode
+let CursorColumnI = 0 "the cursor column position in INSERT
+autocmd InsertEnter * let CursorColumnI = col('.')
+autocmd CursorMovedI * let CursorColumnI = col('.')
+autocmd InsertLeave * if col('.') != CursorColumnI | call cursor(0, col('.')+1) | endif
 
 " rust
 let g:rustfmt_autosave = 1
