@@ -1,6 +1,0 @@
-# bash_profile
-
-export PATH=$PATH:/c/programs/lua/
-alias lua='/c/programs/lua/lua5.1.exe'
-source ~/.bashrc
-echo "hiii"

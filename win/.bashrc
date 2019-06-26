@@ -4,6 +4,7 @@ alias coms='cat ~/.bashrc'
 
 
 
+alias notes='vim /c/Users/ericb/Dropbox/metova/NOTES'
 
 
 # ssh'd into devbox but cant push?
@@ -68,6 +69,8 @@ alias dl='cd ~/Downloads'
 alias _='cd -'
 alias met='cd /c/Users/ericb/metova/'
 alias prog='cd /c/programs/'
+alias yale='cd /c/Users/ericb/metova/yale-control4-proxy-driver'
+
 
 # jquery in the console
 # var script = document.createElement('script');script.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js";document.getElementsByTagName('head')[0].appendChild(script); // jquery
@@ -101,5 +104,4 @@ alias postgres1='pg_ctl -D /usr/local/var/postgres -l logfile start'
 
 
 echo 'happy :)'
-
 
