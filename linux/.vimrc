@@ -12,8 +12,6 @@ set cursorline
 " # setterm=builtin_ansi
 
 
-set rtp+=/usr/local/go/misc/vim
-
 set nofoldenable    " disable folding
 set timeoutlen=240 " Quick timeout for speedy key sequence resolution
 set cinoptions=:0g0 " ...but don't indent case labels and access modifiers
@@ -21,7 +19,7 @@ set cinoptions=:0g0 " ...but don't indent case labels and access modifiers
 
 " Making completion menu's look OK
 hi Search ctermfg=Cyan ctermbg=NONE cterm=bold
-hi LineNr ctermfg=White
+"hi LineNr ctermfg=Gold
 
 
 let g:CommandTCursorColor='blue'
@@ -30,14 +28,6 @@ let g:CommandTHighlightColor ='red'
 set modifiable
 "No highlights after search
 nnoremap <esc> :noh<return><esc>
-
-" ack
-let g:ackprg = 'ag --nogroup --nocolor --column'
-
-" omni completion
-set omnifunc=syntaxcomplete#Complete
-
-
 
 " MAIN KEY CUSTOMIZATIONS
 " jj escapes from insert mode
@@ -238,11 +228,6 @@ noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
 
-" provide hjkl movements in Insert mode via the <Alt> modifier key
-inoremap <A-h> <C-o>h
-inoremap <A-j> <C-o>j
-inoremap <A-k> <C-o>k
-inoremap <A-l> <C-o>l
 
 " workaround to kill garbage characters
 set t_RV=
@@ -279,36 +264,11 @@ augroup END
 
 " Made D behave
 nnoremap D d$
-
-" Go-vim stuff
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_interfaces = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
-" Open Godoc in browser
-au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-" Open godef in a new tab
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-
-au FileType go nmap <Leader>i <Plug>(go-info)
-
-nnoremap gooff :GoDisableGoimports<CR>
-nnoremap goon :GoEnableGoimports<CR>
-
-
-" Remove the nasty red whitespace errors
-let g:go_highlight_trailing_whitespace_error = 0
+ " d should not cut
+nnoremap d "_d
+vnoremap d "_d
 
 "set nohlsearch " search highlighting is bothersome
-
-" haskell
-" use ghc functionality for haskell files
-au Bufenter *.hs compiler ghc
-" configure browser for haskell_doc.vim
-let g:haddock_browser = "/usr/bin/google-chrome"
 
 "perltidy
 " mark a block of perl code and press '=' to format
@@ -325,15 +285,10 @@ function! s:DiffWithSaved()
 endfunction
 com! DiffSaved call s:DiffWithSaved()
 
-
-
-" rust
-let g:rustfmt_autosave = 1
-
 " syntastic
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
@@ -343,3 +298,7 @@ let g:syntastic_check_on_wq = 0
 " Go with syntastic
 let g:syntastic_go_checkers = ['golint'] ", 'govet']
 
+set nowrap           " do not automatically wrap on load
+set formatoptions-=t " do not automatically wrap text when typing
+
+set number
