@@ -1,0 +1,9 @@
+systemd-coredump
+build-essential
+jq
+meld
+git
+z (from github rupa)
+screen
+libtool libtool-bin
+baobab
