@@ -7,3 +7,4 @@ z (from github rupa)
 screen
 libtool libtool-bin
 baobab
+info
