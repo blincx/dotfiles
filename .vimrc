@@ -20,6 +20,7 @@ set cinoptions=:0g0 " ...but don't indent case labels and access modifiers
 " Making completion menu's look OK
 hi Search ctermfg=Cyan ctermbg=NONE cterm=bold
 "hi LineNr ctermfg=Gold
+hi Visual cterm=none ctermbg=yellow ctermfg=black
 
 
 let g:CommandTCursorColor='blue'
